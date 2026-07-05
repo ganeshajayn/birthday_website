@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A magical and emotional birthday surprise crafted just for you — with love, memories, and heartfelt messages." />
+  <meta name="theme-color" content="#0d0620" />
+  <title>Happy Birthday 🎂 — A Special Surprise Just For You</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+    rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon emoji -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LOADING SCREEN
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="loader-cake">🎂</div>
+      <div class="loader-text">Preparing your surprise…</div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FLOATING MUSIC PLAYER
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="music-player" class="music-player hidden">
+    <div class="music-player-inner">
+      <div class="music-info">
+        <span class="music-icon">🎵</span>
+        <div class="music-details">
+          <span class="music-title">Birthday Serenade</span>
+          <span class="music-artist">Made with Love</span>
+        </div>
+      </div>
+      <div class="music-controls">
+        <button id="btn-prev" class="music-btn" title="Previous" aria-label="Previous track">⏮</button>
+        <button id="btn-play" class="music-btn music-btn-play" title="Play/Pause"
+          aria-label="Play or pause music">▶</button>
+        <button id="btn-next" class="music-btn" title="Next" aria-label="Next track">⏭</button>
+      </div>
+      <div class="music-progress-wrap">
+        <span id="music-current-time" class="music-time">0:00</span>
+        <input type="range" id="music-progress" class="music-progress" value="0" min="0" max="100"
+          aria-label="Song progress" />
+        <span id="music-total-time" class="music-time">0:00</span>
+      </div>
+      <div class="music-volume-wrap">
+        <span class="music-vol-icon">🔊</span>
+        <input type="range" id="music-volume" class="music-volume" value="60" min="0" max="100" aria-label="Volume" />
+      </div>
+    </div>
+    <!-- Hidden audio element — user must interact first -->
+    <audio id="bg-audio" loop>
+      <source src="assets/gr0za-birthday-happy-birthday-503371.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="hero" class="section hero-section">
+    <!-- Starfield canvas -->
+    <canvas id="star-canvas" aria-hidden="true"></canvas>
+
+    <!-- Moon glow -->
+    <div class="moon-glow" aria-hidden="true">
+      <div class="moon"></div>
+      <div class="moon-ring"></div>
+      <div class="moon-ring moon-ring-2"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div id="hero-particles" class="hero-particles" aria-hidden="true"></div>
+
+    <!-- Highlight photo — yana 2.jpeg —  premium glowing portrait -->
+    <div class="hero-highlight-photo" aria-hidden="true">
+      <div class="hero-highlight-frame">
+        <img src="assets/yana 2.jpeg" alt="" />
+        <div class="hero-highlight-ring hero-highlight-ring-1"></div>
+        <div class="hero-highlight-ring hero-highlight-ring-2"></div>
+        <div class="hero-highlight-sparkles">
+          <span>✨</span><span>🌸</span><span>⭐</span><span>💫</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <p class="hero-pre-title reveal-fade">— A Special Surprise —</p>
+      <h1 class="hero-title reveal-fade">
+        <span class="hero-title-happy">Happy</span>
+        <span class="hero-title-birthday">Birthday</span>
+        <span class="hero-title-emoji" aria-hidden="true">🎂</span>
+      </h1>
+      <p class="hero-subtitle reveal-fade">This little surprise was made just for you</p>
+      <div class="hero-divider reveal-fade" aria-hidden="true">
+        <span>✦</span><span>✦</span><span>✦</span>
+      </div>
+      <a href="#memories" id="cta-open" class="cta-btn reveal-fade" aria-label="Open your surprise">
+        <span class="cta-btn-text">Open Your Surprise</span>
+        <span class="cta-btn-icon" aria-hidden="true">🎁</span>
+        <span class="cta-btn-glow" aria-hidden="true"></span>
+      </a>
+      <div class="hero-scroll-hint reveal-fade" aria-hidden="true">
+        <span>scroll to explore</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MEMORY TIMELINE
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="memories" class="section memories-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">Memory <span class="gradient-text">Timeline</span></h2>
+        <p class="section-subtitle">Every chapter of us, forever written in my heart</p>
+      </div>
+
+      <div class="timeline" role="list">
+
+        <!-- Memory 1 -->
+        <div class="timeline-item timeline-item-left" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">🌟</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">🌅</div>
+            <h3 class="timeline-card-title">The Day We Met</h3>
+            <p class="timeline-card-text">
+              The universe conspired to bring two souls together. That first conversation felt like rediscovering a
+              friend I had known for a lifetime.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Memory 2 -->
+        <div class="timeline-item timeline-item-right" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">🌙</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">🌙</div>
+            <h3 class="timeline-card-title">Late-Night Chats</h3>
+            <p class="timeline-card-text">
+              When the world went quiet, our conversations came alive. Those midnight exchanges were my favorite kind of
+              magic — honest, warm, and real.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Memory 3 -->
+        <div class="timeline-item timeline-item-left" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">🇵🇭</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">📚</div>
+            <h3 class="timeline-card-title">Learning Tagalog Together</h3>
+            <p class="timeline-card-text">
+              "Mahal kita." Every word you taught me carried a piece of your world. Learning your language felt like
+              learning a secret code meant only for us.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Memory 4 -->
+        <div class="timeline-item timeline-item-right" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">💬</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">💭</div>
+            <h3 class="timeline-card-title">Sharing Feelings & Secrets</h3>
+            <p class="timeline-card-text">
+              The walls came down and we shared pieces of ourselves that we rarely show anyone. That trust was one of
+              the most precious gifts you gave me.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Memory 5 -->
+        <div class="timeline-item timeline-item-left" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">😂</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">😄</div>
+            <h3 class="timeline-card-title">Laughing Together</h3>
+            <p class="timeline-card-text">
+              Your laugh is contagious and your sense of humor lights up everything. Those moments of pure, unfiltered
+              joy are memories I return to often.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Memory 6 -->
+        <div class="timeline-item timeline-item-right" role="listitem">
+          <div class="timeline-dot">
+            <span aria-hidden="true">🤝</span>
+          </div>
+          <div class="timeline-card glass-card" tabindex="0">
+            <div class="timeline-card-icon" aria-hidden="true">🫂</div>
+            <h3 class="timeline-card-title">Supporting Each Other</h3>
+            <p class="timeline-card-text">
+              In the quiet moments when life felt heavy, you were there — not with grand gestures, but with presence,
+              and that meant everything to me.
+            </p>
+            <div class="timeline-card-glow" aria-hidden="true"></div>
+          </div>
+        </div>
+
+      </div><!-- /.timeline -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PHOTO GALLERY
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="gallery" class="section gallery-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Captured Moments</p>
+        <h2 class="section-title">Our <span class="gradient-text">Gallery</span></h2>
+        <p class="section-subtitle">A collection of memories, built with love — click to enlarge ❤️</p>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid" role="list">
+        <!-- Polaroid cards — generated by JS using placeholder images -->
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox"
+      style="display:none;">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">✕</button>
+      <div class="lightbox-hearts" id="lightbox-hearts" aria-hidden="true"></div>
+      <div class="lightbox-inner">
+        <img id="lightbox-img" src="" alt="Enlarged photo" />
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       EMOTIONAL MESSAGES (FLIP CARDS)
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="messages" class="section messages-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">From the Heart</p>
+        <h2 class="section-title">Messages <span class="gradient-text">for You</span></h2>
+        <p class="section-subtitle">Hover or tap each card to reveal the words inside</p>
+      </div>
+
+      <div class="flip-cards-grid" id="flip-cards-container" role="list">
+        <!-- Flip cards rendered by JS from API -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       INTERACTIVE FUN SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="fun" class="section fun-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Just for Fun</p>
+        <h2 class="section-title">Interactive <span class="gradient-text">Surprises</span></h2>
+        <p class="section-subtitle">Play around, smile, and enjoy 😊</p>
+      </div>
+
+      <div class="fun-grid">
+
+        <!-- Feature 1: Awesome button -->
+        <div class="fun-card glass-card">
+          <div class="fun-card-icon" aria-hidden="true">💫</div>
+          <h3 class="fun-card-title">Are You Awesome?</h3>
+          <p class="fun-card-desc">Go ahead, press the button…</p>
+          <button id="btn-awesome" class="fun-btn glow-btn" aria-label="Click if you are awesome">
+            Click if you're awesome
+          </button>
+          <p id="awesome-result" class="fun-result hidden" aria-live="polite"></p>
+        </div>
+
+        <!-- Feature 2: Compliment generator -->
+        <div class="fun-card glass-card">
+          <div class="fun-card-icon" aria-hidden="true">🌸</div>
+          <h3 class="fun-card-title">Compliment Generator</h3>
+          <p class="fun-card-desc">You deserve to hear something beautiful</p>
+          <button id="btn-compliment" class="fun-btn glow-btn" aria-label="Generate a compliment">
+            Generate Compliment ✨
+          </button>
+          <p id="compliment-result" class="fun-result hidden" aria-live="polite"></p>
+        </div>
+
+        <!-- Feature 3: Mini quiz -->
+        <div class="fun-card glass-card fun-card-wide">
+          <div class="fun-card-icon" aria-hidden="true">🧩</div>
+          <h3 class="fun-card-title">How Well Do You Know Me?</h3>
+          <p class="fun-card-desc">A little quiz just for you</p>
+          <div id="quiz-container" class="quiz-container">
+            <div id="quiz-question-wrap" class="quiz-question-wrap">
+              <p id="quiz-progress" class="quiz-progress" aria-live="polite"></p>
+              <p id="quiz-question" class="quiz-question" aria-live="polite"></p>
+              <div id="quiz-options" class="quiz-options" role="group" aria-label="Answer options"></div>
+              <p id="quiz-explanation" class="quiz-explanation hidden" aria-live="polite"></p>
+              <button id="quiz-next" class="fun-btn glow-btn hidden" aria-label="Next question">Next →</button>
+            </div>
+            <div id="quiz-result-wrap" class="quiz-result-wrap hidden">
+              <div class="quiz-score-display">
+                <span id="quiz-score" class="quiz-score-num"></span>
+                <p id="quiz-score-msg" class="quiz-score-msg"></p>
+              </div>
+              <button id="quiz-restart" class="fun-btn glow-btn" aria-label="Restart quiz">Play Again 🔄</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4: Click for hearts -->
+        <div class="fun-card glass-card">
+          <div class="fun-card-icon" aria-hidden="true">❤️</div>
+          <h3 class="fun-card-title">Spread Love</h3>
+          <p class="fun-card-desc">Click anywhere on the page to release floating hearts 💖</p>
+          <button id="btn-hearts" class="fun-btn glow-btn" aria-label="Release hearts">
+            Release Hearts 💕
+          </button>
+        </div>
+
+      </div><!-- /.fun-grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       BIRTHDAY LETTER
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="letter" class="section letter-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Written for You</p>
+        <h2 class="section-title">A <span class="gradient-text">Birthday Letter</span></h2>
+      </div>
+
+      <div class="letter-card glass-card">
+        <div class="letter-border-anim" aria-hidden="true"></div>
+        <div class="letter-header">
+          <span class="letter-rose" aria-hidden="true">🌹</span>
+          <p class="letter-date" id="letter-date"></p>
+        </div>
+        <div class="letter-body">
+          <p class="letter-salutation">Happy Birthday Yana......</p>
+          
+          <p class="letter-para">
+            Sometimes I still think about how strange and beautiful life is. Two strangers from two different countries met on Omegle, and somehow that random moment changed so much for me.
+          </p>
+          
+          <p class="letter-para">
+            At first, you were just a stranger on a screen. Someone I didn’t know, someone I never expected would become this important in my life. But little by little, conversation after conversation, call after call, you became more than a friend — you became someone my heart deeply cares for.
+          </p>
+          
+          <p class="letter-para">
+            We come from different countries, different cultures, different worlds, yet with you none of that ever felt like a distance. Instead, it became something beautiful. You showed me your world, your culture, your music, your language, and in return you became a part of mine too.
+          </p>
+          
+          <p class="letter-para">
+            I cherish all the moments we shared — singing together, laughing until our stomachs hurt, talking for hours on calls, sharing silence that somehow still felt comforting, and opening up about things we don’t tell everyone.
+          </p>
+          
+          <p class="letter-para">
+            I know life hasn’t always been easy for you. And if there’s one thing I want you to always remember, it’s this: I will always care about you. I will always want to be there, especially during your hardest days. Being there for you never felt like a responsibility — it felt natural, because your happiness matters to me.
+          </p>
+          
+          <p class="letter-para">
+            One of my favorite things is knowing you wait for me. After your gym sessions, you still look forward to talking to me, and I don’t think you fully understand how much that means. Being someone you wait for is something I silently treasure.
+          </p>
+          
+          <p class="letter-para">
+            And your dimples… I don’t think I’ve ever told you enough, but they have this strange power to make even my worst days feel lighter. Your smile heals in ways words cannot explain.
+          </p>
+          
+          <p class="letter-para">
+            Your music does something similar. Somehow, your voice, your songs, your taste in music — they calm me, comfort me, and make everything feel a little better.
+          </p>
+          
+          <p class="letter-para">
+            You were once a stranger.
+          </p>
+          
+          <p class="letter-para">
+            Now, you are someone woven into my daily life, my thoughts, my emotions, and my memories.
+          </p>
+          
+          <p class="letter-para">
+            You became someone special.<br>
+            Someone irreplaceable.<br>
+            Someone who means far more to me than words can fully express.
+          </p>
+          
+          <p class="letter-para">
+            On your birthday, I don’t just wish you happiness. I wish for your healing, your peace, your dreams to come true, and a life that gives back all the kindness you carry inside.
+          </p>
+          
+          <p class="letter-para">
+            No matter where life takes us, no matter how many miles remain between us, a part of me will always be grateful for the day Omegle connected two souls who were never supposed to meet — yet somehow did.
+          </p>
+          
+          <p class="letter-para">
+            Happy Birthday.
+          </p>
+          
+          <p class="letter-para">
+            And thank you… for becoming one of the most beautiful parts of my life.
+          </p>
+          
+          <p class="letter-closing">
+            <strong>By GANESH</strong><br />
+            <em>From India</em>
+          </p>
+        </div>
+        <div class="letter-seal" aria-hidden="true">
+          <span>💌</span>
+        </div>
+      </div>
+
+      <!-- Interactive Cake Section -->
+      <div class="cake-section-wrap">
+        <div class="cake-container glass-card" id="cake-card">
+          <div class="cake-glow-effect"></div>
+          <h3 class="cake-title">Make a Wish & Tap Yana's Cake! 🎂</h3>
+          <div class="cake-wrapper" id="cake-wrapper" role="button" tabindex="0" aria-label="Tap to blow the candle and cut the cake">
+            <div class="candle-wrapper" id="candle-wrapper">
+              <div class="candle-wick"></div>
+              <div class="candle-flame" id="candle-flame"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="cake-body">
+              <div class="cake-icing"></div>
+              <div class="cake-cream"></div>
+              <div class="cake-decoration"></div>
+              <div class="cake-candles-placeholder"></div>
+              <!-- Slice line (drawn visually) -->
+              <div class="cake-slice-line" id="cake-slice-line"></div>
+            </div>
+          </div>
+          <p class="cake-hint" id="cake-hint">🕯️ Tap the candle to blow it out first!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Flying Cake Slice Overlay -->
+  <div id="cake-slice-overlay" class="cake-slice-overlay hidden" aria-hidden="true">
+    <div class="flying-slice-container glass-card">
+      <span class="flying-slice-emoji">🍰</span>
+      <h3 class="flying-slice-title">A Sweet Slice For You!</h3>
+      <p class="flying-slice-desc">Enjoy a piece of cake, Yana! ❤️</p>
+      <button class="fun-btn glow-btn" id="btn-close-slice">Thank you! 🥰</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FINAL SURPRISE SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section id="surprise" class="section surprise-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">One Last Thing…</p>
+        <h2 class="section-title">Your Final <span class="gradient-text">Surprise</span></h2>
+        <p class="section-subtitle">Click the gift box to open it 🎁</p>
+      </div>
+
+      <div class="gift-box-wrap">
+        <div id="gift-box" class="gift-box" role="button" tabindex="0" aria-label="Click to open your surprise gift box"
+          aria-expanded="false">
+          <div class="gift-lid">
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-bow">
+              <div class="gift-bow-left"></div>
+              <div class="gift-bow-right"></div>
+              <div class="gift-bow-center"></div>
+            </div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-body"></div>
+          </div>
+          <div class="gift-sparkle gift-sparkle-1" aria-hidden="true">✦</div>
+          <div class="gift-sparkle gift-sparkle-2" aria-hidden="true">✨</div>
+          <div class="gift-sparkle gift-sparkle-3" aria-hidden="true">⭐</div>
+        </div>
+
+        <!-- Canvas for confetti & fireworks -->
+        <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+        <!-- Final message (shown after box open) -->
+        <div id="final-message" class="final-message hidden" aria-live="polite">
+          <div class="final-message-inner glass-card">
+            <div class="final-hearts-row" aria-hidden="true">❤️ 🧡 💛 💚 💙 💜 🩷</div>
+            <h2 class="final-title">You Are Special.</h2>
+            <p class="final-sub">Never forget that.</p>
+            <div class="final-divider" aria-hidden="true">✦ ✦ ✦</div>
+            <p class="final-msg">
+              Happy Birthday ❤️<br />
+              May this day mark the beginning of your most beautiful chapter yet.
+            </p>
+            <div class="final-emoji-row" aria-hidden="true">🌸 🎂 🌟 🎉 🌺</div>
+          </div>
+        </div>
+      </div><!-- /.gift-box-wrap -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">Made with 💖 &amp; a little bit of magic</p>
+      <p class="footer-sub">Happy Birthday — You deserve every bit of this and more ✨</p>
+      <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑ Back to Top</button>
+    </div>
+  </footer>
+
+  <!-- ─── Global click-hearts layer ─── -->
+  <div id="click-hearts-layer" class="click-hearts-layer" aria-hidden="true"></div>
+
+  <!-- ─── Toast notification ─── -->
+  <div id="toast" class="toast hidden" role="alert" aria-live="assertive"></div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
